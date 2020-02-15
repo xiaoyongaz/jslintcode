@@ -1,0 +1,28 @@
+{
+  "author": "Xiaoyong Zhou",
+  "private": true,
+  "scripts": {
+    "test": "ava --verbose --match \"!*#bonus\"",
+    "testall": "ava",
+    "serve": "http-server test_data/"
+  },
+  "dependencies": {
+    "ava": "^3.3.0",
+    "esm": "^3.2.18",
+    "http-server": "^0.11.1",
+    "isomorphic-fetch": "^2.2.1",
+    "local": "^0.3.3"
+  },
+  "ava": {
+    "files": [
+      "1string/**/*"
+    ],
+    "extensions": [
+      "mjs"
+    ],
+    "require": [
+      "esm"
+    ],
+    "failWithoutAssertions": false
+  }
+}
