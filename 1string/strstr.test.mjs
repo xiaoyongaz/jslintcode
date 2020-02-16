@@ -21,6 +21,6 @@ test('source and target should return -1', t => {
 test('abcdabcdefg and bcd should return 1', t => {
     let result = strstr('abcdabcdefg', 'bcd');
     console.log(`result is ${result}`);
-    assert.deepEqual(result, 1, "should return 1");
+    assert.deepEqual(result, 1, "should return -1");
 });
 

@@ -6,8 +6,7 @@ Given two strings, find the longest common substring.
 
 Return the length of it.
 
-The characters in substring should occur continuously in original string. 
-This is different with subsequence.
+The characters in substring should occur continuously in original string. This is different with subsequence.
 
 Have you met this question in a real interview?  
 Example
