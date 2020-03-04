@@ -4,19 +4,29 @@
  * @param i: A bit position
  * @param j: A bit position
  * @return: An integer
-Example
-Example 1:
+   */
 
-Input: N=(10000000000)2 M=(10101)2 i=2 j=6
-Output: N=(10001010100)2
-Example 2:
+export function b32(n) {
+  // >>> ensures highest bit isn’t interpreted as a sign
+  return (n >>> 0).toString(2).padStart(32, '0');
+}
 
-Input: N=(10000000000)2 M=(11111)2 i=2 j=6
-Output: N=(10001111100)2
-Challenge
-Minimum number of operations?
-    */
-const updateBits = function (n, m, i, j) {
+export function updateBits(n, m, i, j) {
+    console.log(b32(n));
+    console.log(b32(m));
+    let shiftedM = m << i;
+    console.log(b32(shiftedM));
+    let bit = 1 << i;
+    for(let l = 0; l < (j-i+1); l++){
+        if( (shiftedM & bit) != 0){
+            n = n | bit;
+        }else {
+            n = n & (~bit);
+        }
+        bit = bit << 1;
+    }
+    console.log(b32(n));
+    return n;
 }
 
 
