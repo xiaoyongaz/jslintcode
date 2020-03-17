@@ -10,32 +10,36 @@ class TreeNode {
 
 class Solution {
 public:
-    int removeLeftMax(TreeNode* pre, TreeNode* node, bool left){
+    int removeLeftMax(TreeNode* pre, TreeNode* node){
         //if right is nullptr, then itself is largest, remove itself    
         if(node->right == nullptr){
-            if(left) pre->left = node->left;
-            else pre->right = node->left;
+            pre->left = node->left;
             auto val = node->val;
             delete node;
             return val;
         }
-        pre = node;
-        node = node->right;
-        auto val = removeRightMin(pre, node, false);
+        while(node->right != nullptr){
+            pre = node;
+            node = node->right;
+        }
+        auto val = node->val;
+        removeNodeHelper(pre, node, false);
         return val;
     }
 
-    int removeRightMin(TreeNode* pre, TreeNode* node, bool left){
+    int removeRightMin(TreeNode* pre, TreeNode* node){
         if(node->left == nullptr){
-            if(left) pre->left = node->right;
-            else pre->right = node->right;
+            pre->right = node->right;
             auto val = node->val;
             delete node;
             return val;
         }
-        pre = node;
-        node = node->left;
-        auto val = removeLeftMax(pre, node, true);
+        while(node->left != nullptr){
+            pre = node;
+            node = node->left;
+        }
+        auto val = node->val;
+        removeNodeHelper(pre, node, true);
         return val;
     }
 
@@ -47,12 +51,12 @@ public:
             return;
         }
         if(node->left != nullptr){
-            auto val = removeLeftMax(node, node->left, true);
+            auto val = removeLeftMax(node, node->left);
             node->val = val;
             return;
         }
 
-        auto val = removeRightMin(node, node->right, false);
+        auto val = removeRightMin(node, node->right);
         node->val = val;
         return;
     }
