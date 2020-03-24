@@ -5,7 +5,7 @@ function combineHelper(n, k, currentSet, index, collector){
         return;
     }
 
-    if(index >= n.length) return;
+    if((n.length - index + currentSet.length) < k) return;
 
     currentSet.push(n[index]);
     combineHelper(n, k, currentSet, index+1, collector);
